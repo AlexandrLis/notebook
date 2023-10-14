@@ -3,12 +3,16 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
+// Здравствуйте. Понимаю, что код получился с ошибками и не самый оптимальный
+// Но я старался как мог
+
 public class Clients_code {
     public static void main(String[] args) {
         Scanner scanner_string = new Scanner(System.in);
         Scanner scanner_int = new Scanner(System.in);
         Map map = new HashMap();
         Map map_filter = new HashMap();
+        Map answer = new HashMap();
 
         Notebook notebook_1 = new Notebook();
         notebook_1.memory = randomMemory();
@@ -80,15 +84,87 @@ public class Clients_code {
         map.put(8, notebook_8);
         map.put(9, notebook_9);
         map.put(10, notebook_10);
+;
 
         System.out.println("Сгенерировали 10 ноутбуков: ");
         print(map);
-        filter(map, map_filter, scanner_int, scanner_string);
-        // findByFilter(map);
+
+        Map res = filter(map, map_filter, scanner_int, scanner_string);
         
+        System.out.println("Фильтр: ");
+
+        if((("memory: " + notebook_1.getMemory()).equals(res.get(1))) && 
+            (("hardDesk: " + notebook_1.getHardDesk()).equals(res.get(2))) &&
+            (("OS: " + notebook_1.getOS()).equals(res.get(3))) &&
+            (("color: " + notebook_1.getColor()).equals(res.get(4)))){
+                answer.put(1, notebook_1);
+            }
+
+        if((("memory: " + notebook_2.getMemory()).equals(res.get(1))) && 
+            (("hardDesk: " + notebook_2.getHardDesk()).equals(res.get(2))) &&
+            (("OS: " + notebook_2.getOS()).equals(res.get(3))) &&
+            (("color: " + notebook_2.getColor()).equals(res.get(4)))){
+                answer.put(2, notebook_2);
+            }
+
+        if((("memory: " + notebook_3.getMemory()).equals(res.get(1))) && 
+            (("hardDesk: " + notebook_3.getHardDesk()).equals(res.get(2))) &&
+            (("OS: " + notebook_3.getOS()).equals(res.get(3))) &&
+            (("color: " + notebook_3.getColor()).equals(res.get(4)))){
+                answer.put(3, notebook_3);
+            }
+
+        if((("memory: " + notebook_4.getMemory()).equals(res.get(1))) && 
+            (("hardDesk: " + notebook_4.getHardDesk()).equals(res.get(2))) &&
+            (("OS: " + notebook_4.getOS()).equals(res.get(3))) &&
+            (("color: " + notebook_4.getColor()).equals(res.get(4)))){
+                answer.put(4, notebook_4);
+            }
+
+        if((("memory: " + notebook_5.getMemory()).equals(res.get(1))) && 
+            (("hardDesk: " + notebook_5.getHardDesk()).equals(res.get(2))) &&
+            (("OS: " + notebook_5.getOS()).equals(res.get(3))) &&
+            (("color: " + notebook_5.getColor()).equals(res.get(4)))){
+                answer.put(5, notebook_5);
+            }
+
+        if((("memory: " + notebook_6.getMemory()).equals(res.get(1))) && 
+            (("hardDesk: " + notebook_6.getHardDesk()).equals(res.get(2))) &&
+            (("OS: " + notebook_6.getOS()).equals(res.get(3))) &&
+            (("color: " + notebook_6.getColor()).equals(res.get(4)))){
+                answer.put(6, notebook_6);
+            }
+
+        if((("memory: " + notebook_7.getMemory()).equals(res.get(1))) && 
+            (("hardDesk: " + notebook_7.getHardDesk()).equals(res.get(2))) &&
+            (("OS: " + notebook_7.getOS()).equals(res.get(3))) &&
+            (("color: " + notebook_7.getColor()).equals(res.get(4)))){
+                answer.put(7, notebook_7);
+            }
+
+        if((("memory: " + notebook_8.getMemory()).equals(res.get(1))) && 
+            (("hardDesk: " + notebook_8.getHardDesk()).equals(res.get(2))) &&
+            (("OS: " + notebook_8.getOS()).equals(res.get(3))) &&
+            (("color: " + notebook_8.getColor()).equals(res.get(4)))){
+                answer.put(8, notebook_8);
+            }
+
+        if((("memory: " + notebook_9.getMemory()).equals(res.get(1))) && 
+            (("hardDesk: " + notebook_9.getHardDesk()).equals(res.get(2))) &&
+            (("OS: " + notebook_9.getOS()).equals(res.get(3))) &&
+            (("color: " + notebook_9.getColor()).equals(res.get(4)))){
+                answer.put(9, notebook_9);
+            }
+
+        if((("memory: " + notebook_10.getMemory()).equals(res.get(1))) && 
+            (("hardDesk: " + notebook_10.getHardDesk()).equals(res.get(2))) &&
+            (("OS: " + notebook_10.getOS()).equals(res.get(3))) &&
+            (("color: " + notebook_10.getColor()).equals(res.get(4)))){
+                answer.put(10, notebook_10);
+            }
+        System.out.println(answer);
     }
     // -------------------------------------------------------------------------------
-    // функции генерации случайных элементов
     static int randomMemory(){
         int[] memory = {2, 4, 8, 16};
         Random random = new Random();
@@ -127,7 +203,7 @@ public class Clients_code {
         }
     }
 
-    static void filter(Map map, Map map_filter, Scanner scanner_int, Scanner scanner_string){
+    static Map filter(Map map, Map map_filter, Scanner scanner_int, Scanner scanner_string){
         System.out.println("Выберите элементы фильтра: ");
         System.out.println("1 - ОЗУ");
         System.out.println("2 - Жесткий диск");
@@ -141,52 +217,47 @@ public class Clients_code {
             System.out.println("Выберите минимальное значение ОЗУ: 2, 4, 8, 16");
             int find_memory = scanner_int.nextInt();
             map_filter.put(parametr, "memory: " + find_memory);
-            filter(map, map_filter, scanner_int, scanner_string);
+            return filter(map, map_filter, scanner_int, scanner_string);
         }
         else if(parametr == 2){
             System.out.println("Выберите минимальное значение Жесткого диска: 128, 256, 512, 1024");
             int find_hardDesk = scanner_int.nextInt();
             map_filter.put(parametr, "hardDesk: " + find_hardDesk);
-            filter(map, map_filter, scanner_int, scanner_string);
+            return filter(map, map_filter, scanner_int, scanner_string);
         }
         else if(parametr == 3){
             System.out.println("Введите Операционную систему: Windows, Linux, Apple:");
             String find_OS = scanner_string.nextLine();
             map_filter.put(parametr, "OS: " + find_OS);
-            filter(map, map_filter, scanner_int, scanner_string);
+            return filter(map, map_filter, scanner_int, scanner_string);
         }
         else if(parametr == 4){
             System.out.println("Введите Цвет: white, gray, black, pink:");
             String find_color = scanner_string.nextLine();
             map_filter.put(parametr, "color: " + find_color);
-            filter(map, map_filter, scanner_int, scanner_string);
+            return filter(map, map_filter, scanner_int, scanner_string);
         }
         else if(parametr == 5){
-            resultat(map, map_filter);
+            return map_filter;
         }
         else{
             System.out.println("Вы ввели неверное значение");
             System.out.println("Попробуйте снова: ");
-            filter(map, map_filter, scanner_int, scanner_string);
+            return filter(map, map_filter, scanner_int, scanner_string);
         }
-    }
-    static void resultat(Map map, Map map_filter){
-        System.out.println();
-        System.out.println("Список ноутбуков: ");
-        print(map);
-        System.out.println("Список фильтров: ");
-        print_filter(map_filter);
-        System.out.println("Список ноутбуков с учетом фильтров: ");
-        for (int i = 1; i <= map.size(); i++) {
-            for (int j = 1; j <= map_filter.size(); j++) {
-                if(map.get(i).equals(map_filter.get(j))){
-                    System.out.println(map.get(i));
-                }
-            }
-        }
-        return;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
